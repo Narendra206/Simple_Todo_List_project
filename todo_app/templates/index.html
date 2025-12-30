@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do App</title>
+    <style>
+        body {font-family: Arial; background:#f2f7ff; text-align:center;}
+        input {padding:8px;width:200px;}
+        button {padding:8px;margin-left:5px;}
+        ul {list-style:none;padding:0;}
+        li {background:#fff; margin:5px auto;padding:10px;width:200px;border-radius:5px;}
+        a {color:red;text-decoration:none;float:right;}
+    </style>
+</head>
+<body>
+
+    <h2>Simple To-Do App</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="task" placeholder="Enter task..." required>
+        <button type="submit">Add</button>
+    </form>
+
+    <ul>
+    {% for task in tasks %}
+    <li style="text-decoration: {% if task.completed %}line-through{% endif %};">
+        {{ task.title }}
+
+        {% if not task.completed %}
+        <a href="/complete/{{ task.id }}/" style="color:green; margin-right:10px;">✔</a>
+        {% endif %}
+        
+        <a href="/delete/{{ task.id }}/" style="color:red;">X</a>
+    </li>
+    {% endfor %}
+    </ul>
+
+
+</body>
+</html>
