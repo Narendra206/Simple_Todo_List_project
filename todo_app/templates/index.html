@@ -27,7 +27,7 @@
         {{ task.title }}
 
         {% if not task.completed %}
-        <a href="/complete/{{ task.id }}/" style="color:green; margin-right:10px;">✔</a>
+        <a href="/complete/{{ task.id }}/" style="color:green; margin-left:10px;">✔</a>
         {% endif %}
         
         <a href="/delete/{{ task.id }}/" style="color:red;">X</a>
